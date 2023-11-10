@@ -1,0 +1,14 @@
+{
+  "name": "oasisslackbot",
+  "version": "1.0.0",
+  "description": "A Slack Bot for the Oasis Slack Channel",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Laith Taher",
+  "license": "ISC",
+  "dependencies": {
+    "@slack/bolt": "^3.14.0"
+  }
+}
