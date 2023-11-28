@@ -1,0 +1,48 @@
+name: Epic
+description: A collection of many tasks
+title: "Epic: "
+labels: [epic]
+body:
+  - type: textarea
+    id: overview
+    attributes:
+      label: Overview
+      description: Provide a brief summary of this epic
+    validations:
+      required: true
+  - type: textarea
+    id: user-story
+    attributes:
+      label: User Story
+      value: "As a _____, I want _____, so that _____."
+    validations:
+      required: true
+  - type: textarea
+    id: rollout
+    attributes:
+      label: Rollout Plan
+      description: How will this be released? All at once? In parts?
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Out of Scope
+      description: What is not included in this epic?
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance Criteria & Mock-ups
+      description: Each UI change needs a detailed mock-up. All business logic and cases should be accounted for as well.
+    validations:
+      required: true
+  - type: textarea
+    id: tickets
+    attributes:
+      label: Tickets
+      description: What tickets will be a part of this epic?
+      value: " - [ ] #\n - [ ] #"
+    validations:
+      required: true
