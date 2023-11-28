@@ -1,3 +1,10 @@
+/*
+Command: /resources
+Usage: /resources
+Description: Provides the Oasis website resources link.
+Author(s): Laith Taher
+*/
+
 import { App } from "@slack/bolt";
 
 export const resources = (app: App): void => {

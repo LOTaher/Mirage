@@ -1,3 +1,10 @@
+/*
+Command: /attendance
+Usage: /attendance [hack session #]
+Description: Tracks attendance of each hack session via message reactions.
+Author(s): Laith Taher
+*/
+
 import { App } from "@slack/bolt";
 
 export const attendance = (app: App): void => {
