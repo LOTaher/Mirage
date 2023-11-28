@@ -1,4 +1,4 @@
-<h1 align="center">🌴 Oasis Slack Bot 🌊</h1>
+<h1 align="center">🌴 Mirage 🌊</h1>
 
 </p></a>
 <p align="center">
@@ -15,14 +15,14 @@
 
 ## Welcome
 
-Welcome to the Oasis Slack Bot repository! More information coming soon.
+Welcome to the Mirage repository! More information coming soon.
 
 ## Structure
 
-| Codebase             |   Description    |
-| :------------------- | :--------------: |
-| [palm](palm)     |  Bot (Bolt)   |
-| [wave](wave) |    Back-end (Express.js)    |
+| Codebase     |      Description      |
+| :----------- | :-------------------: |
+| [palm](palm) |      Bot (Bolt)       |
+| [wave](wave) | Back-end (Express.js) |
 
 ## Branches
 
