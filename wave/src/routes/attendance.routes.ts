@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { PrismaClient } from "@prisma/client";
+import { Member, PrismaClient } from "@prisma/client";
 
 const attendanceRouter = Router();
 const prisma = new PrismaClient();
@@ -37,7 +37,7 @@ attendanceRouter.post("/:sessionName", async (req, res) => {
       });
     }
 
-    if (!session.people.some((member) => member.id === user!.id)) {
+    if (!session.people.some((member: Member) => member.id === user!.id)) {
       await prisma.session.update({
         where: { id: session.id },
         data: {
