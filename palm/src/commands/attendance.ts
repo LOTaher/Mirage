@@ -48,7 +48,7 @@ export const attendance = (app: App): void => {
           messageTimestamps.push({ channel: channel_id, ts: result.ts });
         } else {
           console.error(
-            `Failed to get a timestamp for the message in channel ${channel_id}`
+            `Failed to get a timestamp for the message in channel ${channel_id}`,
           );
         }
       }
@@ -85,7 +85,7 @@ export const attendance = (app: App): void => {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({ slackID: event.user, userName: username }),
-            }
+            },
           );
 
           await client.chat.postEphemeral({
