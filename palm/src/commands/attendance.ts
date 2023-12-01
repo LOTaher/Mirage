@@ -13,21 +13,25 @@ import { authorizedUsers } from "../utils/auth";
 const sessionNameMap: Record<string, string> = {};
 
 export const attendance = (app: App): void => {
-  app.command("/attendance", async ({ command, ack, say }) => {
+  app.command("/attendance", async ({ command, ack, say, respond }) => {
     try {
       await ack();
       const session: string = command.text.trim();
       const user_id: string = command.user_id;
 
       if (!authorizedUsers.includes(user_id)) {
-        await say("Sorry, you do not have permission to use this command.");
+        await respond({
+          text: "Sorry, you do not have permission to use this command.",
+          response_type: "ephemeral",
+        });
         return;
       }
 
       if (!session) {
-        await say(
-          "Please specify a hack session. Usage: `/attendance [hack session #]`",
-        );
+        await respond({
+          text: "Please specify a hack session. Usage: `/attendance [hack session #]`",
+          response_type: "ephemeral",
+        });
         return;
       }
 
@@ -44,7 +48,7 @@ export const attendance = (app: App): void => {
           messageTimestamps.push({ channel: channel_id, ts: result.ts });
         } else {
           console.error(
-            `Failed to get a timestamp for the message in channel ${channel_id}`,
+            `Failed to get a timestamp for the message in channel ${channel_id}`
           );
         }
       }
@@ -81,7 +85,7 @@ export const attendance = (app: App): void => {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({ slackID: event.user, userName: username }),
-            },
+            }
           );
 
           await client.chat.postEphemeral({
