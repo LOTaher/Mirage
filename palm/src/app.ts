@@ -2,6 +2,7 @@ import { App } from "@slack/bolt";
 import "./utils/env";
 import { attendance } from "./commands/attendance";
 import { resources } from "./commands/resources";
+import { member } from "./commands/member";
 
 const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
@@ -14,6 +15,7 @@ const app = new App({
 // Slash Commands
 attendance(app);
 resources(app);
+member(app);
 
 (async () => {
   await app.start();
