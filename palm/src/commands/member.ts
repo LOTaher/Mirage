@@ -2,7 +2,7 @@
 Command: /member
 Usage: /member [slack ID]
 Description: Gets the attendance info of a specific member.
-Author(s): Laith
+Author(s): Laith Taher
 */
 
 import { App } from "@slack/bolt";
@@ -44,7 +44,7 @@ export const member = (app: App): void => {
       }
 
       const response = await fetch(
-        `${process.env.WAVE_ROUTE}/attendance/info/${user_id}`,
+        `${process.env.WAVE_ROUTE}/attendance/info/${user_id}`
       );
 
       if (response.ok) {

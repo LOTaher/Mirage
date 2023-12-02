@@ -1,6 +1,6 @@
 /*
 Command: /attendance
-Usage: /attendance [hack session #]
+Usage: /attendance [session name]
 Description: Tracks attendance of each hack session via message reactions.
 Author(s): Laith Taher
 */
@@ -13,7 +13,7 @@ import { authorizedUsers } from "../utils/auth";
 const sessionNameMap: Record<string, string> = {};
 
 export const attendance = (app: App): void => {
-  app.command("/attendance", async ({ command, ack, say, respond }) => {
+  app.command("/attendance", async ({ command, ack, respond }) => {
     try {
       await ack();
       const session: string = command.text.trim();
@@ -48,7 +48,7 @@ export const attendance = (app: App): void => {
           messageTimestamps.push({ channel: channel_id, ts: result.ts });
         } else {
           console.error(
-            `Failed to get a timestamp for the message in channel ${channel_id}`,
+            `Failed to get a timestamp for the message in channel ${channel_id}`
           );
         }
       }
@@ -85,7 +85,7 @@ export const attendance = (app: App): void => {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({ slackID: event.user, userName: username }),
-            },
+            }
           );
 
           await client.chat.postEphemeral({
