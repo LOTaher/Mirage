@@ -58,7 +58,10 @@ export const member = (app: App): void => {
 
         await say(responseMessage);
       } else {
-        await say("Failed to retrieve member information.");
+        await respond({
+          text: "Failed to retrieve member information. Make sure you have inputted the correct Slack ID.",
+          response_type: "ephemeral",
+        });
       }
     } catch (error) {
       console.error("Error in /member command:", error);
