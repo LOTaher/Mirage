@@ -3,6 +3,7 @@ import "./utils/env";
 import { attendance } from "./commands/attendance";
 import { resources } from "./commands/resources";
 import { member } from "./commands/member";
+import { count } from "./commands/count";
 
 const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
@@ -16,6 +17,7 @@ const app = new App({
 attendance(app);
 resources(app);
 member(app);
+count(app);
 
 (async () => {
   await app.start();

@@ -56,6 +56,27 @@ attendanceRouter.post("/:sessionName", async (req, res) => {
   }
 });
 
+attendanceRouter.get("/info/:sessionName", async (req, res) => {
+  const { sessionName } = req.params;
+
+  try {
+    let session = await prisma.session.findUnique({
+      where: { name: sessionName },
+    });
+
+    if (!session) {
+      res.status(404).json({ message: "No session found." });
+    } else {
+      res.status(200).json({
+        attendance: session.attendance,
+      });
+    }
+  } catch (error) {
+    console.error("Failed to retrieve attendance count", error);
+    res.status(500).json({ error: "Internal server error! " });
+  }
+});
+
 attendanceRouter.get("/info/:slackID", async (req, res) => {
   const { slackID } = req.params;
 
