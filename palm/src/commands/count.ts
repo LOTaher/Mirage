@@ -32,7 +32,7 @@ export const count = (app: App): void => {
       }
 
       const response = await fetch(
-        `${process.env.WAVE_ROUTE}/attendance/info/${session}`,
+        `${process.env.WAVE_ROUTE}/attendance/info/session/${session}`,
       );
 
       if (response.ok) {

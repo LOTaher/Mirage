@@ -44,7 +44,7 @@ export const member = (app: App): void => {
       }
 
       const response = await fetch(
-        `${process.env.WAVE_ROUTE}/attendance/info/${user_id}`,
+        `${process.env.WAVE_ROUTE}/attendance/info/member/${user_id}`,
       );
 
       if (response.ok) {

@@ -56,7 +56,7 @@ attendanceRouter.post("/:sessionName", async (req, res) => {
   }
 });
 
-attendanceRouter.get("/info/:sessionName", async (req, res) => {
+attendanceRouter.get("/info/session/:sessionName", async (req, res) => {
   const { sessionName } = req.params;
 
   try {
@@ -77,7 +77,7 @@ attendanceRouter.get("/info/:sessionName", async (req, res) => {
   }
 });
 
-attendanceRouter.get("/info/:slackID", async (req, res) => {
+attendanceRouter.get("/info/member/:slackID", async (req, res) => {
   const { slackID } = req.params;
 
   try {
