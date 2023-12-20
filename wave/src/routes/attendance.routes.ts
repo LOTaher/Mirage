@@ -77,24 +77,4 @@ attendanceRouter.get("/info/session/:sessionName", async (req, res) => {
   }
 });
 
-attendanceRouter.get("/info/member/:slackID", async (req, res) => {
-  const { slackID } = req.params;
-
-  try {
-    let member = await prisma.member.findUnique({
-      where: { slackID: slackID },
-      include: { sessions: true },
-    });
-
-    if (member) {
-      res.json(member);
-    } else {
-      res.status(404).json({ message: "Member not found." });
-    }
-  } catch (error) {
-    console.error("Failed to retrieve member:", error);
-    res.status(500).json({ error: "Internal server error." });
-  }
-});
-
 export default attendanceRouter;
