@@ -44,7 +44,7 @@ export const member = (app: App): void => {
       }
 
       const response = await fetch(
-        `${process.env.WAVE_ROUTE}/member/${user_id}`,
+        `${process.env.WAVE_ROUTE}/member/${member}`,
       );
 
       if (response.ok) {
@@ -57,6 +57,11 @@ export const member = (app: App): void => {
         });
 
         await say(responseMessage);
+      } else if (response.status == 404) {
+        await respond({
+          text: "Member not found. Please make sure the Slack ID is correct and that the member is in a group.",
+          response_type: "ephemeral",
+        });
       } else {
         await respond({
           text: "Failed to retrieve member information. Make sure you have inputted the correct Slack ID.",
