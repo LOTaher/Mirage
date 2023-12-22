@@ -7,7 +7,7 @@ Author(s): Laith Taher
 
 import { App } from "@slack/bolt";
 import "../utils/env";
-import { authorizedUsers } from "../utils/auth";
+import { eboard } from "../utils/auth";
 import { Session } from "../utils/types";
 
 export const member = (app: App): void => {
@@ -17,7 +17,7 @@ export const member = (app: App): void => {
       const member: string = command.text.trim();
       const user_id: string = command.user_id;
 
-      if (!authorizedUsers.includes(user_id)) {
+      if (!eboard.includes(user_id)) {
         await respond({
           text: "Sorry, you do not have permission to use this command.",
           response_type: "ephemeral",
@@ -44,7 +44,7 @@ export const member = (app: App): void => {
       }
 
       const response = await fetch(
-        `${process.env.WAVE_ROUTE}/member/${member}`,
+        `${process.env.WAVE_ROUTE}/member/${member}`
       );
 
       if (response.ok) {

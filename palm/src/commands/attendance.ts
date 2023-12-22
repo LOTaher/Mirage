@@ -8,7 +8,7 @@ Author(s): Laith Taher
 import { App } from "@slack/bolt";
 import "../utils/env";
 import { groupChannels } from "../utils/auth";
-import { authorizedUsers } from "../utils/auth";
+import { eboard } from "../utils/auth";
 
 const sessionNameMap: Record<string, string> = {};
 
@@ -19,7 +19,7 @@ export const attendance = (app: App): void => {
       const session: string = command.text.trim();
       const user_id: string = command.user_id;
 
-      if (!authorizedUsers.includes(user_id)) {
+      if (!eboard.includes(user_id)) {
         await respond({
           text: "Sorry, you do not have permission to use this command.",
           response_type: "ephemeral",
@@ -48,7 +48,7 @@ export const attendance = (app: App): void => {
           messageTimestamps.push({ channel: channel_id, ts: result.ts });
         } else {
           console.error(
-            `Failed to get a timestamp for the message in channel ${channel_id}`,
+            `Failed to get a timestamp for the message in channel ${channel_id}`
           );
         }
       }
@@ -85,7 +85,7 @@ export const attendance = (app: App): void => {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({ slackID: event.user }),
-            },
+            }
           );
           if (response.ok) {
             await client.chat.postEphemeral({

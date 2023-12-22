@@ -6,7 +6,7 @@ Author(s): Laith Taher
 */
 
 import { App } from "@slack/bolt";
-import { authorizedUsers } from "../utils/auth";
+import { eboard } from "../utils/auth";
 
 export const count = (app: App): void => {
   app.command("/count", async ({ command, ack, respond, say }) => {
@@ -16,7 +16,7 @@ export const count = (app: App): void => {
       const session = command.text.trim();
       const user_id = command.user_id;
 
-      if (!authorizedUsers.includes(user_id)) {
+      if (!eboard.includes(user_id)) {
         await respond({
           text: "Sorry, you do not have permission to use this command.",
           response_type: "ephemeral",
@@ -33,7 +33,7 @@ export const count = (app: App): void => {
       }
 
       const response = await fetch(
-        `${process.env.WAVE_ROUTE}/attendance/info/session/${session}`,
+        `${process.env.WAVE_ROUTE}/attendance/info/session/${session}`
       );
 
       if (response.ok) {
