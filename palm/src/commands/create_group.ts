@@ -53,16 +53,16 @@ export const create_group = (app: App): void => {
           } catch (error) {
             console.error(
               `Error retrieving user info for Slack ID ${slackID}:`,
-              error
+              error,
             );
             return null;
           }
-        }
+        },
       );
 
       const members = (await Promise.all(membersPromises)).filter(
         (member): member is Member =>
-          member !== null && member.name !== undefined
+          member !== null && member.name !== undefined,
       );
 
       const response = await fetch(
@@ -77,7 +77,7 @@ export const create_group = (app: App): void => {
             mentor,
             members,
           }),
-        }
+        },
       );
 
       if (response.ok) {
