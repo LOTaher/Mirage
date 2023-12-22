@@ -3,3 +3,8 @@ export interface Session {
   name: string;
   attendance: number;
 }
+
+export interface Member {
+  name: string;
+  slackID: string;
+}

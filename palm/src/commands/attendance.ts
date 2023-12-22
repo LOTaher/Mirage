@@ -84,15 +84,22 @@ export const attendance = (app: App): void => {
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ slackID: event.user, userName: username }),
+              body: JSON.stringify({ slackID: event.user }),
             },
           );
-
-          await client.chat.postEphemeral({
-            channel: event.item.channel,
-            user: event.user,
-            text: "Registered!",
-          });
+          if (response.ok) {
+            await client.chat.postEphemeral({
+              channel: event.item.channel,
+              user: event.user,
+              text: "Registered!",
+            });
+          } else {
+            await client.chat.postEphemeral({
+              channel: event.item.channel,
+              user: event.user,
+              text: "You are not permitted to register.",
+            });
+          }
         }
       } catch (error) {
         console.error("Error handling reaction:", error);

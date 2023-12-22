@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 
 attendanceRouter.post("/:sessionName", async (req, res) => {
   const { sessionName } = req.params;
-  const { slackID, userName } = req.body;
+  const { slackID } = req.body;
 
   try {
     let session = await prisma.session.findUnique({
@@ -29,11 +29,20 @@ attendanceRouter.post("/:sessionName", async (req, res) => {
     });
 
     if (!user) {
-      user = await prisma.member.create({
-        data: {
-          name: userName,
-          slackID,
-        },
+      return res.status(404).json({
+        message:
+          "User not found. Please ensure the user is added to a group before taking attendance.",
+      });
+    }
+
+    const group = await prisma.group.findUnique({
+      where: { id: user.groupId },
+    });
+
+    if (!group) {
+      return res.status(400).json({
+        message:
+          "User is not part of any valid group. Please add the user to a group before taking attendance.",
       });
     }
 

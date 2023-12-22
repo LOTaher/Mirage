@@ -29,6 +29,7 @@ export const count = (app: App): void => {
           text: "Please provide a session. Usage: `/count [session name]`",
           response_type: "ephemeral",
         });
+        return;
       }
 
       const response = await fetch(

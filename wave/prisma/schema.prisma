@@ -1,0 +1,35 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Member {
+  id       Int       @id @default(autoincrement())
+  name     String
+  slackID  String    @unique
+  sessions Session[] @relation("Attendance")
+  group    Group     @relation("Grouping", fields: [groupId], references: [id])
+  groupId Int
+}
+
+model Session {
+  id         Int      @id @default(autoincrement())
+  name       String   @unique
+  attendance Int      @default(0)
+  people     Member[] @relation("Attendance")
+}
+
+model Group {
+  id      Int      @id @default(autoincrement())
+  number  Int
+  mentor  String
+  members Member[] @relation("Grouping")
+  repository String
+}
