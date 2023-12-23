@@ -10,7 +10,7 @@ memberRouter.get("/:slackID", async (req, res) => {
   try {
     let member = await prisma.member.findUnique({
       where: { slackID: slackID },
-      include: { sessions: true },
+      include: { sessions: true, group: true },
     });
 
     if (member) {

@@ -50,10 +50,10 @@ export const member = (app: App): void => {
       if (response.ok) {
         const memberInfo = await response.json();
 
-        let responseMessage: string = `Member *${memberInfo.name}* has attended:\n`;
+        let responseMessage: string = `Member <@${memberInfo.slackID}>\nGroup: *${memberInfo.group.number}*\nMentor: *${memberInfo.group.mentor}*\nAttendence:\n`;
 
         memberInfo.sessions.forEach((session: Session) => {
-          responseMessage += `• *${session.name}*\n`;
+          responseMessage += `- *${session.name}*\n`;
         });
 
         await say(responseMessage);
