@@ -33,7 +33,11 @@ export const count = (app: App): void => {
       }
 
       const response = await fetch(
-        `${process.env.WAVE_ROUTE}/attendance/info/session/${session}`,
+        `${process.env.WAVE_ROUTE}/attendance/${session}`,
+        {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+        },
       );
 
       if (response.ok) {

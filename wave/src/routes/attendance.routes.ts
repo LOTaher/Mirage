@@ -65,7 +65,7 @@ attendanceRouter.post("/:sessionName", async (req, res) => {
   }
 });
 
-attendanceRouter.get("/info/session/:sessionName", async (req, res) => {
+attendanceRouter.get("/:sessionName", async (req, res) => {
   const { sessionName } = req.params;
 
   try {
