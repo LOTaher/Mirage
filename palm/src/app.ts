@@ -5,6 +5,7 @@ import { resources } from "./commands/resources";
 import { member } from "./commands/member";
 import { count } from "./commands/count";
 import { create_group } from "./commands/create_group";
+import { group } from "./commands/group";
 
 const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
@@ -20,6 +21,7 @@ resources(app);
 member(app);
 count(app);
 create_group(app);
+group(app);
 
 (async () => {
   await app.start();

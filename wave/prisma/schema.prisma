@@ -28,7 +28,7 @@ model Session {
 
 model Group {
   id      Int      @id @default(autoincrement())
-  number  Int
+  number  Int @unique
   mentor  String
   members Member[] @relation("Grouping")
   repository String

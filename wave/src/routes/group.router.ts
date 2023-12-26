@@ -49,4 +49,34 @@ groupRouter.post("/:groupNumber", async (req, res) => {
   }
 });
 
+groupRouter.get("/:groupNumber", async (req, res) => {
+  const { groupNumber } = req.params;
+
+  try {
+    if (!/^\d+$/.test(groupNumber)) {
+      return res.status(400).json({
+        message: "Invalid group number provided. It must be an integer.",
+      });
+    }
+
+    const number = parseInt(groupNumber, 10);
+
+    const group = await prisma.group.findUnique({
+      where: { number },
+      include: {
+        members: true,
+      },
+    });
+
+    if (group) {
+      res.json(group);
+    } else {
+      res.status(404).json({ message: "Group not found." });
+    }
+  } catch (error) {
+    console.error("Error fetching group:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 export default groupRouter;
