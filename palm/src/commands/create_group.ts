@@ -1,6 +1,6 @@
 /*
 Command: /create_group
-Usage: /create_group [Member Slack ID] [Member Slack ID] [Member Slack ID] [Member Slack ID] [Repository]
+Usage: /create_group [member slack ID] [member slack ID] [member slack ID] [member slack ID] [repository link]
 Description: Initializes an Oasis group into the database.
 Author(s): Laith Taher
 */
